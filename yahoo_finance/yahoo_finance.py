@@ -242,6 +242,3 @@ class YahooFinance:
         formatted_info = json.dumps(stock_info, indent=4)
         print(formatted_info)
         return formatted_info
-    
-
-YahooFinance(['googl', 'schb', 'nkla']).scrape()
