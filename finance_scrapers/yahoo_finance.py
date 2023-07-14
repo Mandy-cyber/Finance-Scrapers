@@ -11,7 +11,8 @@ import progressbar
 import json
 import time
 # internal imports
-from finance_scrapers.stock_options import StockOption
+# from finance_scrapers.stock_info import StockInfo
+from finance_scrapers.stock_info import StockInfo
 
 
 class YahooFinance:
@@ -24,7 +25,7 @@ class YahooFinance:
     home_url: str = "https://www.finance.yahoo.com"
 
     def __init__(self, tickers: List[str], validate_tickers: bool = True, 
-                 show_progress: bool = False, info_to_find: set[StockOption] = set(StockOption)) -> None:
+                 show_progress: bool = False, info_to_find: set[StockInfo] = set(StockInfo)) -> None:
         """
         Initializes a YahooFinance to scrape information about the given stocks
         (identified by their tickers).
@@ -210,8 +211,10 @@ class YahooFinance:
         stock_info: Dict[str, str] = dict()
         
         for idx, info in enumerate(self.info_to_find):
-            info_text = self.__explicit_wait(By.XPATH, info.value)
-            stock_info[info.name] = info_text
+            info_val = info.value
+            info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
+            info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
+            stock_info[info_name] = info_text
 
         return stock_info
     

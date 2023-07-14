@@ -1,2 +1,2 @@
-from finance_scrapers.stock_options import StockOption
+from finance_scrapers.stock_info import StockInfo
 from finance_scrapers.yahoo_finance import YahooFinance
