@@ -11,7 +11,7 @@ import progressbar
 import json
 import time
 # internal imports
-from stock_options import StockOption
+from finance_scrapers.stock_options import StockOption
 
 
 class YahooFinance:

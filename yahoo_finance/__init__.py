@@ -1,2 +1,0 @@
-from yahoo_finance.stock_options import StockOption
-from yahoo_finance.yahoo_finance import YahooFinance
