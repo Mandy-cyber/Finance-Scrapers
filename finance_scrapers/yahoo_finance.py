@@ -191,10 +191,7 @@ class YahooFinance:
         Arg:
             ticker: the ticker of the stock being found
         """
-        searchbar = self.browser.find_element(By.ID, "yfin-usr-qry")
-        searchbar.send_keys(ticker)
-        searchbar.send_keys(Keys.RETURN)
-        # waits for stock header to be found (i.e. page has been loaded)
+        self.browser.get(f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch")
         self.__explicit_wait(By.ID, "quote-header-info")
 
 
