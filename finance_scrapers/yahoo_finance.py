@@ -169,8 +169,10 @@ class YahooFinance:
         get_driver.install()
 
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        # chrome_options.add_experimental_option('detach', True)
+        # chrome_options.add_argument("--headless")
+        chrome_options.add_experimental_option('detach', True)
+        chrome_options.add_argument('--ignore-certificate-errors')
+        chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument("--log-level=3")
         prefs = {"profile.default_content_setting_values.notifications" : 2}
         chrome_options.add_experimental_option("prefs", prefs)
@@ -178,8 +180,7 @@ class YahooFinance:
 
         browser.get(YahooFinance.home_url)
         # wait for page to load
-        time.sleep(2)
-        # self.__explicit_wait(By.ID, "yfin-usr-qry")
+        self.__explicit_wait(By.ID, "yfin-usr-qry")
         return browser
     
 
