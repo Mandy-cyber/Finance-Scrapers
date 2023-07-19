@@ -281,24 +281,6 @@ class YahooFinance:
         return all_stocks_info
     
 
-    # def scrape(self, tickers: List[str], display_info: bool = True) -> Dict[str, Dict[str, str]]:
-    #     """
-    #     Runs the scraper to find all the stock information
-
-    #     Args:
-    #         tickers: the tickers of the stocks to find and scrape
-    #         display_info: if the results of the search should be displayed in the
-    #                       terminal
-
-    #     Returns:
-    #         stock_info: the stocks' information
-    #     """
-    #     stock_info = self.__find_stocks(tickers=tickers)
-    #     formatted_info = json.dumps(stock_info, indent=4)
-    #     print(formatted_info)
-    #     return stock_info
-    
-
     def download_data(self, file_type: str, file_path: str, overwrite: bool = True) -> None:
         """
         Download's the given stock information to a file of the given type.
