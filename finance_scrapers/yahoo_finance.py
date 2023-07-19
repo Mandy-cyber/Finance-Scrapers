@@ -34,14 +34,16 @@ class YahooFinance:
             validate_tickers: if the tickers should be validated before scraping
             show_progress: if the stock-scraping progress should be displayed in the terminal
         """
+        self.browser = YahooFinance.__configure_browser()
+
         self.show_progress = show_progress
         self.tickers: List[str] = self.__validate_tickers(tickers) if validate_tickers else tickers
         self.validate_tickers = validate_tickers
 
         self.info_to_find = info_to_find
-        self.num_options = len(info_to_find)
+        
 
-        self.browser = self.__configure_browser()
+        
     
     @staticmethod
     def __create_progress_bar(progress_message: str, max_value: int) -> progressbar:
@@ -116,7 +118,7 @@ class YahooFinance:
         """
         valid_tickers: List[str] = []
 
-        for idx, ticker in enumerate(tickers):
+        for ticker in tickers:
             ticker = ticker.upper()
             valid_ticker = [ticker] if self.__valid_ticker(ticker) else self.__request_new_ticker(ticker)
             valid_tickers.extend(valid_ticker)
@@ -156,7 +158,8 @@ class YahooFinance:
         return valid_ticker
     
 
-    def __configure_browser(self) -> webdriver:
+    @staticmethod
+    def __configure_browser() -> webdriver:
         """
         Downloads (if one doesn't already exist) and configures a ChromeDriver with basic options.
 
@@ -228,7 +231,7 @@ class YahooFinance:
         stock_info: Dict[str, str] = dict()
 
         if self.__find_stock(ticker):
-            for idx, info in enumerate(self.info_to_find):
+            for info in self.info_to_find:
                 info_val = info.value
                 info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
                 info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
@@ -246,7 +249,7 @@ class YahooFinance:
         """
         all_stocks_info: Dict[str, Dict[str, str]] = dict()
 
-        for idx, ticker in enumerate(self.tickers): 
+        for ticker in self.tickers: 
             all_stocks_info[ticker] = self.__get_stock_info(ticker)
 
         return all_stocks_info
