@@ -1,7 +1,7 @@
+# external imports
 # type: ignore
 from get_chrome_driver import GetChromeDriver
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,9 +9,10 @@ from selenium.webdriver.common.by import By
 from typing import Dict, List
 import progressbar
 import json
-import time
+import os
 # internal imports
 from finance_scrapers.stock_info import StockInfo
+from finance_scrapers.downloader import Downloader
 
 
 class YahooFinance:
@@ -250,17 +251,66 @@ class YahooFinance:
             all_stocks_info[ticker] = self.__get_stock_info(ticker)
 
         return all_stocks_info
+    
 
-    def scrape(self) -> str:
+    def scrape(self, display_info: bool = True) -> Dict[str, Dict[str, str]]:
         """
-        Runs the scraper to find all the stock information then displays the results
-        in json string format.
+        Runs the scraper to find all the stock information
 
-        Returns
-            formatted_info: the stocks' information in json string format
+        Args:
+            display_info: if the results of the search should be displayed in the
+                          terminal
+
+        Returns:
+            stock_info: the stocks' information
         """
         stock_info = self.__find_stocks()
         formatted_info = json.dumps(stock_info, indent=4)
         print(formatted_info)
-        return formatted_info
+        return stock_info
+    
+
+    def download_data(self, file_type: str, file_path: str, overwrite: bool = True) -> None:
+        """
+        Download's the given stock information to a file of the given type.
+
+        File Type options: 
+            - json
+            - csv
+            - markdown
+            - excel
+
+        Args:
+            file_type: the type of file to download the data to
+            file_path: where the file is located/should be downloaded to
+            overwrite: if the file should be overwritten if it already exists
+
+        Raises:
+            ValueError: if an invalid/unsupported file type is provided or if
+                        attempting to download a file of one type using a different
+                        method (e.g. markdown in sample.json)
+        """
+        downloader = Downloader(
+            self.scrape(), 
+            file_path=file_path,
+            overwrite=overwrite
+        )
+
+        download_methods = {
+            "json": downloader.download_json,
+            "csv": downloader.download_csv,
+            "excel": downloader.download_excel,
+            "markdown": downloader.download_md
+        }
+        supported_file_types = download_methods.keys()
+        
+        if file_type.lower() not in supported_file_types:
+            raise ValueError("Invalid file type provided. Expected one of: %s" % supported_file_types)
+        else:
+            download_methods[file_type]()
+
+
+YahooFinance(['schb', 'nasq', 'googl']).download_data("...", "sample.json")
+        
+        
     
