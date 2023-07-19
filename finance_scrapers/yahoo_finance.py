@@ -10,8 +10,10 @@ from typing import Dict, List
 import progressbar
 import json
 # internal imports
-from finance_scrapers.stock_info import StockInfo
-from finance_scrapers.downloader import Downloader
+# from finance_scrapers.stock_info import StockInfo
+# from finance_scrapers.downloader import Downloader
+from stock_info import StockInfo
+from downloader import Downloader
 
 
 class YahooFinance:
@@ -26,8 +28,8 @@ class YahooFinance:
     def __init__(self, tickers: List[str], validate_tickers: bool = True, 
                  show_progress: bool = False) -> None:
         """
-        Initializes a YahooFinance to scrape information about the given stocks
-        (identified by their tickers). Found information is stored in self.stock_info
+        Initializes a YahooFinance to scrape information about the given stocks which
+        are identified by their ticker symbols. Found information is stored in self.stock_info
 
         Args
             tickers: the tickers of the stocks to be scraped
@@ -35,15 +37,19 @@ class YahooFinance:
             show_progress: if the stock-scraping progress should be displayed in the terminal
         """
         # general
+        tickers = map(lambda ticker: ticker.upper(), tickers)
         self.browser = YahooFinance.__configure_browser()
+        self.info_to_find = set(StockInfo)
         self.show_progress = show_progress
 
         # find stocks straight away if validation doesn't matter
-        self.stock_info: Dict[str, Dict[str, str]] = dict() if validate_tickers else self.__find_stocks(tickers)
+        self.stock_info: Dict[str, Dict[str, str]] = dict() if validate_tickers else self.find_stocks(tickers)
 
         # validate stocks and then automatically find stock information as validation occurs
         self.validate_tickers = validate_tickers
         self.tickers: List[str] = self.__validate_tickers(tickers) if validate_tickers else tickers
+
+        
         
     
     @staticmethod
@@ -105,8 +111,12 @@ class YahooFinance:
         """
         ticker_len = len(ticker)
         stock = self.__get_stock_info(ticker)
-        stock_info[ticker] = stock
-        return (ticker_len <= 5 and ticker_len > 0) and (stock_info[ticker] != dict())
+
+        valid = (ticker_len <= 5 and ticker_len > 0) and (stock != dict())
+        if valid:
+            self.stock_info[ticker] = stock
+
+        return valid
 
     
     def __validate_tickers(self, tickers: List[str]) -> List[str]:
@@ -123,7 +133,6 @@ class YahooFinance:
         valid_tickers: List[str] = []
 
         for ticker in tickers:
-            ticker = ticker.upper()
             valid_ticker = [ticker] if self.__valid_ticker(ticker) else self.__request_new_ticker(ticker)
             valid_tickers.extend(valid_ticker)
 
@@ -244,17 +253,17 @@ class YahooFinance:
 
         if self.__find_stock(ticker):
             for info in self.info_to_find:
+                # get information
                 info_val = info.value
                 info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
                 info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
+                # store information
                 stock_info[info_name] = info_text
-
-            self.stock_info = stock_info
-
+                
         return stock_info
     
 
-    def __find_stocks(self, tickers: List[str]) -> Dict[str, Dict[str, str]]:
+    def find_stocks(self, tickers: List[str]) -> Dict[str, Dict[str, str]]:
         """
         Finds all the stocks, with their information, requested by the user
 
@@ -331,5 +340,5 @@ class YahooFinance:
         
         
     
-formatted_info = json.dumps(YahooFinance(['schb'], validate_tickers=False).stock_info, indent=4)
-print(formatted_info)
+# pretty = json.dumps(YahooFinance(['schb', 'googl'], validate_tickers=False).stock_info, indent=4)
+# print(pretty)
