@@ -12,16 +12,36 @@ pip install --upgrade finance-scrapers
 ```
 
 ## Usage
+Scrape stock information and __display__ to terminal:
 ```python
 from finance_scrapers import YahooFinance
 
 # the tickers of the stocks you want to scrape
-tickers = []
+tickers = ['schb', 'googl', 'nflx']
 
 # run the scraper
 scraper = YahooFinance(tickers)
-all_stock_info = scraper.scrape() # format = json string
+all_stock_info = scraper.scrape()
 ```
+
+<br>
+
+Scrape stock information and __download__ to a file:
+```python
+from finance_scrapers import YahooFinance
+
+# the tickers of the stocks you want to scrape
+tickers = ['schb', 'googl', 'nflx']
+
+scraper = YahooFinance(tickers)
+
+# download data
+scraper.download_data("json", "sample.json", overwrite=False) # or,
+scraper.download_data("markdown", "sample.md") # or,
+scraper.download_data("csv", "sample.csv") # or,
+scraper.download_data("excel", "sample.xlsx")
+```
+
 
 ## FAQs
 
