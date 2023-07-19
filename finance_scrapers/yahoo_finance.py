@@ -9,7 +9,6 @@ from selenium.webdriver.common.by import By
 from typing import Dict, List
 import progressbar
 import json
-import os
 # internal imports
 from finance_scrapers.stock_info import StockInfo
 from finance_scrapers.downloader import Downloader
