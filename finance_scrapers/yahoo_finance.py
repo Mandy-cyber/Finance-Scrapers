@@ -159,8 +159,7 @@ class YahooFinance:
 
     def __configure_browser(self) -> webdriver:
         """
-        Downloads (if one doesn't already exist) and configures a ChromeDriver with basic options, 
-        then navigates to the Yahoo Finance home page.
+        Downloads (if one doesn't already exist) and configures a ChromeDriver with basic options.
 
         Returns:
             browser: the configured webdriver on finance.yahoo.com
@@ -169,18 +168,13 @@ class YahooFinance:
         get_driver.install()
 
         chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        chrome_options.add_experimental_option('detach', True)
+        chrome_options.add_argument("--headless")
         chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument("--log-level=3")
         prefs = {"profile.default_content_setting_values.notifications" : 2}
         chrome_options.add_experimental_option("prefs", prefs)
         browser = webdriver.Chrome(options=chrome_options)
-
-        browser.get(YahooFinance.home_url)
-        # wait for page to load
-        self.__explicit_wait(By.ID, "yfin-usr-qry")
         return browser
     
 
@@ -243,3 +237,5 @@ class YahooFinance:
         formatted_info = json.dumps(stock_info, indent=4)
         print(formatted_info)
         return formatted_info
+    
+YahooFinance(['schb', 'googl']).scrape()
