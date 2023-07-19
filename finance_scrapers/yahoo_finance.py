@@ -93,12 +93,13 @@ class YahooFinance:
 
     def __valid_ticker(self, ticker: str) -> bool:
         """
-        Determines if the given ticker is valid--i.e. 5 or fewer characters
+        Determines if the given ticker is valid--i.e. 5 or fewer characters and exists
+        on yahoo finance
 
-        Args
+        Args:
             ticker: the ticker to validate
         
-        Returns
+        Returns:
             True if valid, False if invalid
         """
         ticker_len = len(ticker)
@@ -108,7 +109,7 @@ class YahooFinance:
     def __validate_tickers(self, tickers: List[str]) -> List[str]:
         """
         Determines if the given stock tickers are valid--i.e. 5 or fewer
-        characters.
+        characters and exists on yahoo finance
 
         Args:
             tickers: the list of stock tickers to validate
@@ -131,17 +132,24 @@ class YahooFinance:
         Asks the user via the terminal for a new ticker to replace the
         invalid one.
 
-        Args
+        Args:
             invalid_ticker: the invalid ticker originally provided by the user
 
-        Returns
+        Returns:
             valid_ticker: empty if no replacement given, one-element list if
                           valid replacement provided
+
+        Raises:
+            ValueError: if an invalid response to the 'request new ticker' question
+                        is provided.
         """
-        request_new = input(f"The provided ticker {invalid_ticker} is invalid. Would you like to choose another (y/n)?:  ")
+        request_new = input((f"The provided ticker {invalid_ticker} is invalid/does not exist. 
+                             Would you like to choose another (y/n)?:  "))
         if request_new.lower() == "n":
             return []
-        
+        elif request_new.lower() != "y":
+            raise ValueError("Invalid response provided. Expected either 'y' or 'n'")
+
         valid_ticker: List[str] = []
         valid_provided = False
 
