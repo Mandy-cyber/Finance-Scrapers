@@ -11,7 +11,6 @@ import progressbar
 import json
 import time
 # internal imports
-# from finance_scrapers.stock_info import StockInfo
 from finance_scrapers.stock_info import StockInfo
 
 
@@ -178,20 +177,47 @@ class YahooFinance:
         return browser
     
 
-    def __find_stock(self, ticker: str) -> None:
+    def __find_stock(self, ticker: str) -> bool:
         """
-        Navigates to the given stock's (represented by its ticker) summary page
+        Navigates to the given stock's (represented by its ticker) summary page. If
+        a value that is not an actual stock ticker is provided, yahoo finance will
+        navigate to a 'lookup' page, indicating to us that the stock could not be found.
 
         Arg:
             ticker: the ticker of the stock being found
+
+        Returns:
+            True if the stock could be found, False otherwise
         """
-        self.browser.get(f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch")
-        self.__explicit_wait(By.ID, "quote-header-info")
+        url = f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch"
+        self.browser.get(url)
+        if self.stock_exists(expected_url=url):
+            self.__explicit_wait(By.ID, "quote-header-info")
+            return True
+        
+        return False
+
+
+    def stock_exists(self, expected_url: str) -> bool:
+        """
+        Checks whether the stock exists by comparing the expected url of the stock's
+        summary page, with the browser's current url. If they do not match, the stock
+        does not exist.
+
+        Args:
+            expected_url: the expected yahoo finance page link if the stock exists
+
+        Returns:
+            True if the stock exists, False otherwise
+        """
+        current_url = self.browser.current_url
+        return current_url == expected_url
 
 
     def __get_stock_info(self, ticker: str) -> Dict[str, str]:
         """
-        Gathers all information, requested by the user, about the given stock
+        Gathers all information, requested by the user, about the given stock,
+        if it could be found.
 
         Args:
             ticker: the ticker of the stock whose info is being gathered
@@ -199,14 +225,14 @@ class YahooFinance:
         Returns:
             stock_info: information about the stock
         """
-        self.__find_stock(ticker)
         stock_info: Dict[str, str] = dict()
-        
-        for idx, info in enumerate(self.info_to_find):
-            info_val = info.value
-            info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
-            info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
-            stock_info[info_name] = info_text
+
+        if self.__find_stock(ticker):
+            for idx, info in enumerate(self.info_to_find):
+                info_val = info.value
+                info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
+                info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
+                stock_info[info_name] = info_text
 
         return stock_info
     
@@ -238,4 +264,3 @@ class YahooFinance:
         print(formatted_info)
         return formatted_info
     
-YahooFinance(['schb', 'googl']).scrape()
