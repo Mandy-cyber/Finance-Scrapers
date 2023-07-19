@@ -154,6 +154,7 @@ cython_debug/
 
 # other stuff
 finance_scrapers/chromedriver/
+git-conventional-commits.yaml
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
