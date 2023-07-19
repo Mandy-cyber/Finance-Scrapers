@@ -308,9 +308,6 @@ class YahooFinance:
             raise ValueError("Invalid file type provided. Expected one of: %s" % supported_file_types)
         else:
             download_methods[file_type]()
-
-
-YahooFinance(['schb', 'nasq', 'googl']).download_data("...", "sample.json")
         
         
     
