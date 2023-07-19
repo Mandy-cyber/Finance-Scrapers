@@ -62,6 +62,7 @@ class Downloader:
         """
         if self.file_path.endswith(".json"):
             df = pd.DataFrame(self.data_dict)
+            df.fillna("N/A", inplace=True)
             df.to_json(self.file_path)
         else:
             raise ValueError("File path must end in .json to download json file")

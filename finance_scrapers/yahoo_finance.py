@@ -24,24 +24,27 @@ class YahooFinance:
     home_url: str = "https://www.finance.yahoo.com"
 
     def __init__(self, tickers: List[str], validate_tickers: bool = True, 
-                 show_progress: bool = False, info_to_find: set[StockInfo] = set(StockInfo)) -> None:
+                 show_progress: bool = False) -> None:
         """
         Initializes a YahooFinance to scrape information about the given stocks
-        (identified by their tickers).
+        (identified by their tickers). Found information is stored in self.stock_info
 
         Args
             tickers: the tickers of the stocks to be scraped
             validate_tickers: if the tickers should be validated before scraping
             show_progress: if the stock-scraping progress should be displayed in the terminal
         """
+        # general
+        self.browser = YahooFinance.__configure_browser()
         self.show_progress = show_progress
-        self.tickers: List[str] = self.__validate_tickers(tickers) if validate_tickers else tickers
+
+        # find stocks straight away if validation doesn't matter
+        self.stock_info: Dict[str, Dict[str, str]] = dict() if validate_tickers else self.__find_stocks(tickers)
+
+        # validate stocks and then automatically find stock information as validation occurs
         self.validate_tickers = validate_tickers
-
-        self.info_to_find = info_to_find
-        self.num_options = len(info_to_find)
-
-        self.browser = self.__configure_browser()
+        self.tickers: List[str] = self.__validate_tickers(tickers) if validate_tickers else tickers
+        
     
     @staticmethod
     def __create_progress_bar(progress_message: str, max_value: int) -> progressbar:
@@ -91,22 +94,25 @@ class YahooFinance:
 
     def __valid_ticker(self, ticker: str) -> bool:
         """
-        Determines if the given ticker is valid--i.e. 5 or fewer characters
+        Determines if the given ticker is valid--i.e. 5 or fewer characters and exists
+        on yahoo finance. Will scrape the information and store if valid.
 
-        Args
+        Args:
             ticker: the ticker to validate
         
-        Returns
+        Returns:
             True if valid, False if invalid
         """
         ticker_len = len(ticker)
-        return ticker_len <= 5 and ticker_len > 0
+        stock = self.__get_stock_info(ticker)
+        stock_info[ticker] = stock
+        return (ticker_len <= 5 and ticker_len > 0) and (stock_info[ticker] != dict())
 
     
     def __validate_tickers(self, tickers: List[str]) -> List[str]:
         """
         Determines if the given stock tickers are valid--i.e. 5 or fewer
-        characters.
+        characters and exists on yahoo finance.
 
         Args:
             tickers: the list of stock tickers to validate
@@ -116,7 +122,7 @@ class YahooFinance:
         """
         valid_tickers: List[str] = []
 
-        for idx, ticker in enumerate(tickers):
+        for ticker in tickers:
             ticker = ticker.upper()
             valid_ticker = [ticker] if self.__valid_ticker(ticker) else self.__request_new_ticker(ticker)
             valid_tickers.extend(valid_ticker)
@@ -129,17 +135,25 @@ class YahooFinance:
         Asks the user via the terminal for a new ticker to replace the
         invalid one.
 
-        Args
+        Args:
             invalid_ticker: the invalid ticker originally provided by the user
 
-        Returns
+        Returns:
             valid_ticker: empty if no replacement given, one-element list if
                           valid replacement provided
+
+        Raises:
+            ValueError: if an invalid response to the 'request new ticker' question
+                        is provided.
         """
-        request_new = input(f"The provided ticker {invalid_ticker} is invalid. Would you like to choose another (y/n)?:  ")
+        request_new = input(f"The provided ticker {invalid_ticker} is invalid/does not exist. Would you like to choose another (y/n)?:  ")
+        # dont choose new ticker
         if request_new.lower() == "n":
             return []
-        
+        elif request_new.lower() != "y":
+            raise ValueError("Invalid response provided. Expected either 'y' or 'n'")
+
+        # choose new ticker
         valid_ticker: List[str] = []
         valid_provided = False
 
@@ -156,7 +170,8 @@ class YahooFinance:
         return valid_ticker
     
 
-    def __configure_browser(self) -> webdriver:
+    @staticmethod
+    def __configure_browser() -> webdriver:
         """
         Downloads (if one doesn't already exist) and configures a ChromeDriver with basic options.
 
@@ -228,45 +243,51 @@ class YahooFinance:
         stock_info: Dict[str, str] = dict()
 
         if self.__find_stock(ticker):
-            for idx, info in enumerate(self.info_to_find):
+            for info in self.info_to_find:
                 info_val = info.value
                 info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
                 info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
                 stock_info[info_name] = info_text
 
+            self.stock_info = stock_info
+
         return stock_info
     
 
-    def __find_stocks(self) -> Dict[str, Dict[str, str]]:
+    def __find_stocks(self, tickers: List[str]) -> Dict[str, Dict[str, str]]:
         """
         Finds all the stocks, with their information, requested by the user
 
+        Args:
+            tickers: the tickers of the stocks to find
+        
         Returns:
             all_stocks_info: keys = the stock names  |  values = the stock information
         """
         all_stocks_info: Dict[str, Dict[str, str]] = dict()
 
-        for idx, ticker in enumerate(self.tickers): 
+        for ticker in tickers: 
             all_stocks_info[ticker] = self.__get_stock_info(ticker)
 
         return all_stocks_info
     
 
-    def scrape(self, display_info: bool = True) -> Dict[str, Dict[str, str]]:
-        """
-        Runs the scraper to find all the stock information
+    # def scrape(self, tickers: List[str], display_info: bool = True) -> Dict[str, Dict[str, str]]:
+    #     """
+    #     Runs the scraper to find all the stock information
 
-        Args:
-            display_info: if the results of the search should be displayed in the
-                          terminal
+    #     Args:
+    #         tickers: the tickers of the stocks to find and scrape
+    #         display_info: if the results of the search should be displayed in the
+    #                       terminal
 
-        Returns:
-            stock_info: the stocks' information
-        """
-        stock_info = self.__find_stocks()
-        formatted_info = json.dumps(stock_info, indent=4)
-        print(formatted_info)
-        return stock_info
+    #     Returns:
+    #         stock_info: the stocks' information
+    #     """
+    #     stock_info = self.__find_stocks(tickers=tickers)
+    #     formatted_info = json.dumps(stock_info, indent=4)
+    #     print(formatted_info)
+    #     return stock_info
     
 
     def download_data(self, file_type: str, file_path: str, overwrite: bool = True) -> None:
@@ -290,7 +311,7 @@ class YahooFinance:
                         method (e.g. markdown in sample.json)
         """
         downloader = Downloader(
-            self.scrape(), 
+            self.stock_info, 
             file_path=file_path,
             overwrite=overwrite
         )
@@ -310,3 +331,5 @@ class YahooFinance:
         
         
     
+formatted_info = json.dumps(YahooFinance(['schb'], validate_tickers=False).stock_info, indent=4)
+print(formatted_info)
