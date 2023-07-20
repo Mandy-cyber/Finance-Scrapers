@@ -47,7 +47,7 @@ class YahooFinance:
 
         # validate stocks and then automatically find stock information as validation occurs
         self.validate_tickers = validate_tickers
-        self.tickers: List[str] = self.__validate_tickers(tickers) if validate_tickers else tickers
+        self.tickers: List[str] = self.validate_tickers(tickers) if validate_tickers else tickers
 
         
         
@@ -75,7 +75,7 @@ class YahooFinance:
         return progress_bar
     
 
-    def __explicit_wait(self, search_method: By, element: str, max_wait_time: int = 2) -> str:
+    def _explicit_wait(self, search_method: By, element: str, max_wait_time: int = 2) -> str:
         """
         Explicitly waits for the given element to be located on the browser's page
         before proceeding to gather its value.
@@ -98,7 +98,7 @@ class YahooFinance:
         return element_value
     
 
-    def __valid_ticker(self, ticker: str) -> bool:
+    def valid_ticker(self, ticker: str) -> bool:
         """
         Determines if the given ticker is valid--i.e. 5 or fewer characters and exists
         on yahoo finance. Will scrape the information and store if valid.
@@ -110,7 +110,7 @@ class YahooFinance:
             True if valid, False if invalid
         """
         ticker_len = len(ticker)
-        stock = self.__get_stock_info(ticker)
+        stock = self.get_stock_info(ticker)
 
         valid = (ticker_len <= 5 and ticker_len > 0) and (stock != dict())
         if valid:
@@ -119,7 +119,7 @@ class YahooFinance:
         return valid
 
     
-    def __validate_tickers(self, tickers: List[str]) -> List[str]:
+    def validate_tickers(self, tickers: List[str]) -> List[str]:
         """
         Determines if the given stock tickers are valid--i.e. 5 or fewer
         characters and exists on yahoo finance.
@@ -133,7 +133,7 @@ class YahooFinance:
         valid_tickers: List[str] = []
 
         for ticker in tickers:
-            valid_ticker = [ticker] if self.__valid_ticker(ticker) else self.__request_new_ticker(ticker)
+            valid_ticker = [ticker] if self.valid_ticker(ticker) else self.__request_new_ticker(ticker)
             valid_tickers.extend(valid_ticker)
 
         return valid_tickers
@@ -169,7 +169,7 @@ class YahooFinance:
         while not valid_provided:
             new_ticker = input(f"New ticker: ").upper()
             # valid provided
-            if self.__valid_ticker(new_ticker):
+            if self.valid_ticker(new_ticker):
                 valid_ticker.append(new_ticker)
                 break
             else:
@@ -201,7 +201,7 @@ class YahooFinance:
         return browser
     
 
-    def __find_stock(self, ticker: str) -> bool:
+    def _find_stock(self, ticker: str) -> bool:
         """
         Navigates to the given stock's (represented by its ticker) summary page. If
         a value that is not an actual stock ticker is provided, yahoo finance will
@@ -216,7 +216,7 @@ class YahooFinance:
         url = f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch"
         self.browser.get(url)
         if self.stock_exists(expected_url=url):
-            self.__explicit_wait(By.ID, "quote-header-info")
+            self._explicit_wait(By.ID, "quote-header-info")
             return True
         
         return False
@@ -238,7 +238,7 @@ class YahooFinance:
         return current_url == expected_url
 
 
-    def __get_stock_info(self, ticker: str) -> Dict[str, str]:
+    def get_stock_info(self, ticker: str) -> Dict[str, str]:
         """
         Gathers all information, requested by the user, about the given stock,
         if it could be found.
@@ -251,12 +251,12 @@ class YahooFinance:
         """
         stock_info: Dict[str, str] = dict()
 
-        if self.__find_stock(ticker):
+        if self._find_stock(ticker):
             for info in self.info_to_find:
                 # get information
                 info_val = info.value
-                info_name = self.__explicit_wait(By.XPATH, info_val['name_loc'])
-                info_text = self.__explicit_wait(By.XPATH, info_val['info_loc'])
+                info_name = self._explicit_wait(By.XPATH, info_val['name_loc'])
+                info_text = self._explicit_wait(By.XPATH, info_val['info_loc'])
                 # store information
                 stock_info[info_name] = info_text
                 
@@ -276,7 +276,7 @@ class YahooFinance:
         all_stocks_info: Dict[str, Dict[str, str]] = dict()
 
         for ticker in tickers: 
-            all_stocks_info[ticker] = self.__get_stock_info(ticker)
+            all_stocks_info[ticker] = self.get_stock_info(ticker)
 
         return all_stocks_info
     
