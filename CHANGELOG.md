@@ -1,18 +1,19 @@
-## **0.1.5**&emsp;<sub><sup>2023-07-18 ([4d20a09...e90740f](https://github.com/qoomon/git-conventional-commits/compare/4d20a0961ffd02262d26688120bb47715e655805...e90740f252f9b88b7aa84dfb18e7c76dda227c3e?diff=split))</sup></sub>
-
-### Features
-
-- added ability to download stock data ([02a7013](https://github.com/qoomon/git-conventional-commits/commit/02a7013b9ba86e4818139295364eca44cced79dc), [#4](https://github.com/qoomon/git-conventional-commits/issues/#4))
+## **v1.1.5**&emsp;<sub><sup>2023-07-20 ([70edd04...6aa7fd8](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...6aa7fd8ca06b7ca0169ce08d2d0a8aa23f9b4898?diff=split))</sup></sub>
 
 ### Bug Fixes
 
-- fix handshake error ([069feb6](https://github.com/qoomon/git-conventional-commits/commit/069feb6296ce1440a6a4fe27d0f8d890e8d36c63))
-- fix to handle the case where a stock doesn't exist ([f3a202d](https://github.com/qoomon/git-conventional-commits/commit/f3a202d70b8c56745e8b6e5d3a9558282e39fdaa))
+- fix to replace NaN values in downloaded files with 'N/A' instead ([194266d](https://github.com/qoomon/git-conventional-commits/commit/194266d750ff05a4097d5d91af5c60580ceccf87))
+- fix bug where user could provide an answer other than y/n to request new ticker ([2395a20](https://github.com/qoomon/git-conventional-commits/commit/2395a20e8b326533aa48369c14b51d9efe6ed205))
+- updated valid\_ticker related functions to check if ticker exists ([635beb8](https://github.com/qoomon/git-conventional-commits/commit/635beb8c6c8561d7e7be1631529536250e343778))
+- fix bug where stock info was not being stored ([880824b](https://github.com/qoomon/git-conventional-commits/commit/880824bfab04a18f031388ed166758f69f39bebe))
 
-### Performance Improvements
+### Merges
 
-- more straight\-forward page navigation ([2cc1635](https://github.com/qoomon/git-conventional-commits/commit/2cc163532a2342243df94b794885e9316ec7b055))
-- remove webdriver detach option and browser navigation to homepage ([82e8d62](https://github.com/qoomon/git-conventional-commits/commit/82e8d62a21e9f07c12fdd5e68c1e4b91c89df43a))
+- branch 'main' of https://github\.com/Mandy\-cyber/Yahoo\-Finance ([9e975bd](https://github.com/qoomon/git-conventional-commits/commit/9e975bd27ce8268a4d01c07781f3a19509fce987))
+- branch 'main' of https://github\.com/Mandy\-cyber/Yahoo\-Finance ([6aa7fd8](https://github.com/qoomon/git-conventional-commits/commit/6aa7fd8ca06b7ca0169ce08d2d0a8aa23f9b4898))
 
+
+### BREAKING CHANGES
+-  removed scrape\(\) method as instance attribute stock\_info now stores the information ([9ae7bfe](https://github.com/qoomon/git-conventional-commits/commit/9ae7bfe04fc7d087c75aefeaa933845a20176d1c))
 <br>
 
