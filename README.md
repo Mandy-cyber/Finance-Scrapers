@@ -21,7 +21,7 @@ tickers = ['schb', 'googl', 'nflx']
 
 # run the scraper
 scraper = YahooFinance(tickers)
-all_stock_info = scraper.scrape()
+all_stock_info = scraper.stock_info
 ```
 
 <br>
@@ -41,13 +41,3 @@ scraper.download_data("markdown", "sample.md") # or,
 scraper.download_data("csv", "sample.csv") # or,
 scraper.download_data("excel", "sample.xlsx")
 ```
-
-
-## FAQs
-
-<details>
-    <summary style="font-weight: bold">Why are some of my stock info dictionaries returning empty?</summary>
-    <hr>
-    This indicates that the stock provided does not actually exist. It could be the
-    case that you made a typo, wrote the wrong ticker, etc. In the future, a feature will be added to allow you to re-enter a stock if it could not be found.
-</details>
