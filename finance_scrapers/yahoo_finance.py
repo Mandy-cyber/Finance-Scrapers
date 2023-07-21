@@ -289,7 +289,7 @@ class YahooFinance:
         Args:
             data: the data to be displayed in the terminal
         """
-        if data != None:
+        if data:
             print(json.dumps(data, indent=4))
         else:
             print(json.dumps(self.stock_info, indent=4))
