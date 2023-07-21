@@ -1,4 +1,8 @@
-## [**v1.1.5**]&emsp;<sub><sup>2023-07-21 ([70edd04...42778ef](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...42778ef184d32123f16269019c95f6b6cac892c7?diff=split))</sup></sub>
+## [**v1.1.5**]&emsp;<sub><sup>2023-07-21 ([70edd04...c9cc404](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...c9cc4044d647b53f7d12c1ccd6e8b003f51c50c4?diff=split))</sup></sub>
+
+### Features
+
+- added display\_data function ([c9cc404](https://github.com/qoomon/git-conventional-commits/commit/c9cc4044d647b53f7d12c1ccd6e8b003f51c50c4))
 
 ### Bug Fixes
 
@@ -16,7 +20,7 @@
 ### BREAKING CHANGES
 -  removed scrape\(\) method as instance attribute stock\_info now stores the information ([9ae7bfe](https://github.com/qoomon/git-conventional-commits/commit/9ae7bfe04fc7d087c75aefeaa933845a20176d1c))
 
-<br><br>
+<br>
 
 ## [**v0.1.5**]&emsp;<sub><sup>2023-07-18 ([4d20a09...e90740f](https://github.com/qoomon/git-conventional-commits/compare/4d20a0961ffd02262d26688120bb47715e655805...e90740f252f9b88b7aa84dfb18e7c76dda227c3e?diff=split))</sup></sub>
 
