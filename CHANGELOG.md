@@ -1,4 +1,4 @@
-## [**v1.1.5**]&emsp;<sub><sup>2023-07-21 ([70edd04...7c1ac36](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...7c1ac3627d9725247f7a5a9a1d37b72436b85425?diff=split))</sup></sub>
+## [**v1.1.5**]&emsp;<sub><sup>2023-07-21 ([70edd04...42778ef](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...42778ef184d32123f16269019c95f6b6cac892c7?diff=split))</sup></sub>
 
 ### Bug Fixes
 
@@ -16,7 +16,7 @@
 ### BREAKING CHANGES
 -  removed scrape\(\) method as instance attribute stock\_info now stores the information ([9ae7bfe](https://github.com/qoomon/git-conventional-commits/commit/9ae7bfe04fc7d087c75aefeaa933845a20176d1c))
 
-<br>
+<br><br>
 
 ## [**v0.1.5**]&emsp;<sub><sup>2023-07-18 ([4d20a09...e90740f](https://github.com/qoomon/git-conventional-commits/compare/4d20a0961ffd02262d26688120bb47715e655805...e90740f252f9b88b7aa84dfb18e7c76dda227c3e?diff=split))</sup></sub>
 
