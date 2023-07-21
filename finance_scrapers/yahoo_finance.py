@@ -7,7 +7,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from typing import Dict, List
-import progressbar
 import json
 # internal imports
 # from finance_scrapers.stock_info import StockInfo
@@ -24,6 +23,7 @@ class YahooFinance:
         home_url (str): the url of the home page for Yahoo Finance
     """
     home_url: str = "https://www.finance.yahoo.com"
+
 
     def __init__(self, tickers: List[str], validate_tickers: bool = True, 
                  show_progress: bool = False) -> None:
@@ -49,30 +49,6 @@ class YahooFinance:
         self.validate_tickers = validate_tickers
         self.tickers: List[str] = self.check_tickers(tickers) if validate_tickers else tickers
 
-        
-        
-    
-    @staticmethod
-    def __create_progress_bar(progress_message: str, max_value: int) -> progressbar:
-        """
-        Creates an animated progress bar displaying the given message, and with a length of
-        the given max.
-
-        Args:
-            progress_message: the message to be printed in the terminal
-
-        Returns:
-            progress_bar: an updatable progress bar
-        """
-        widgets = [
-            f"{progress_message}: ", 
-            progressbar.AnimatedMarker(),
-            progressbar.Bar('*'),
-            ' [', progressbar.ETA(), ']\n',
-            ]
-        
-        progress_bar = progressbar.ProgressBar(max_value=max_value, widgets=widgets)
-        return progress_bar
     
 
     def _explicit_wait(self, search_method: By, element: str, max_wait_time: int = 2) -> str:
@@ -333,3 +309,6 @@ class YahooFinance:
             raise ValueError("Invalid file type provided. Expected one of: %s" % supported_file_types)
         else:
             download_methods[file_type]()
+
+
+# YahooFinance(['schb', 'googl', 'nke', 'axl']).display_data()
