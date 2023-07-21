@@ -47,7 +47,7 @@ class YahooFinance:
 
         # validate stocks and then automatically find stock information as validation occurs
         self.validate_tickers = validate_tickers
-        self.tickers: List[str] = self.validate_tickers(tickers) if validate_tickers else tickers
+        self.tickers: List[str] = self.check_tickers(tickers) if validate_tickers else tickers
 
         
         
@@ -119,7 +119,7 @@ class YahooFinance:
         return valid
 
     
-    def validate_tickers(self, tickers: List[str]) -> List[str]:
+    def check_tickers(self, tickers: List[str]) -> List[str]:
         """
         Determines if the given stock tickers are valid--i.e. 5 or fewer
         characters and exists on yahoo finance.
@@ -279,6 +279,20 @@ class YahooFinance:
             all_stocks_info[ticker] = self.get_stock_info(ticker)
 
         return all_stocks_info
+    
+
+    def display_data(self, data: Dict = None) -> None:
+        """
+        Displays the given data in the terminal as 'pretty' json. Defaults
+        to displaying data about the stocks scraped.
+
+        Args:
+            data: the data to be displayed in the terminal
+        """
+        if data != None:
+            print(json.dumps(data, indent=4))
+        else:
+            print(json.dumps(self.stock_info, indent=4))
     
 
     def download_data(self, file_type: str, file_path: str, overwrite: bool = True) -> None:
