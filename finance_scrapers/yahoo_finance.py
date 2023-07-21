@@ -201,7 +201,7 @@ class YahooFinance:
         return browser
     
 
-    def _find_stock(self, ticker: str) -> bool:
+    def __find_stock(self, ticker: str) -> bool:
         """
         Navigates to the given stock's (represented by its ticker) summary page. If
         a value that is not an actual stock ticker is provided, yahoo finance will
@@ -251,7 +251,7 @@ class YahooFinance:
         """
         stock_info: Dict[str, str] = dict()
 
-        if self._find_stock(ticker):
+        if self.__find_stock(ticker):
             for info in self.info_to_find:
                 # get information
                 info_val = info.value
@@ -319,8 +319,3 @@ class YahooFinance:
             raise ValueError("Invalid file type provided. Expected one of: %s" % supported_file_types)
         else:
             download_methods[file_type]()
-        
-        
-    
-# pretty = json.dumps(YahooFinance(['schb', 'googl'], validate_tickers=False).stock_info, indent=4)
-# print(pretty)
