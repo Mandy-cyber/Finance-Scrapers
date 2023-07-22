@@ -1,18 +1,5 @@
-,AXP,SCHB,NKE
-PE Ratio (TTM),17.92,21.72,33.80
-Open,172.17,53.12,108.00
-Ask,171.30 x 800,53.08 x 2200,108.95 x 1800
-52 Week Range,130.65 - 182.15,40.92 - 53.43,82.22 - 131.31
-Market Cap,126.908B,,167.778B
-Forward Dividend & Yield,2.40 (1.36%),,1.36 (1.26%)
-Avg. Volume,"2,847,747","694,175","8,096,234"
-Earnings Date,"Jul 21, 2023",,"Sep 27, 2023 - Oct 02, 2023"
-Day's Range,167.42 - 173.34,52.88 - 53.12,107.54 - 109.29
-Volume,"Jul 06, 2023",0.03%,"Jun 02, 2023"
-EPS (TTM),9.53,,3.23
-Previous Close,177.11,52.92,107.53
-Bid,171.13 x 1000,53.07 x 900,108.93 x 1200
-Net Assets,,23B,
-Beta (5Y Monthly),,1.01,
-YTD Daily Total Return,,18.99%,
-Yield,,1.47%,
+,Day's Range,PE Ratio (TTM),YTD Daily Total Return,Open,Net Assets,Beta (5Y Monthly),Bid,52 Week Range,Avg. Volume,Yield,Volume,Previous Close,Ask,Earnings Date,Market Cap,Forward Dividend & Yield,EPS (TTM)
+SCHB,52.88 - 53.12,52.89,18.99%,53.12,23B,1.01,52.76 x 1800,40.92 - 53.43,"694,175",1.47%,"738,364",52.92,53.88 x 4000,,,,
+GOOGL,118.73 - 120.99,1.05,,120.62,,,120.06 x 900,83.34 - 129.04,"33,916,937",,"68,300,790",119.20,120.09 x 800,"Jul 25, 2023",1.526T,N/A (N/A),4.40
+NKE,107.51 - 109.29,1.12,,108.00,,,109.06 x 1300,82.22 - 131.31,"8,096,234",,"6,617,479",107.53,109.06 x 1100,"Sep 27, 2023 - Oct 02, 2023",167.624B,1.36 (1.26%),3.23
+AXL,9.14 - 9.41,2.29,,9.31,,,9.15 x 900,6.61 - 11.96,"1,196,275",,"1,448,198",9.18,9.40 x 3100,"Aug 04, 2023",1.075B,N/A (N/A),0.49

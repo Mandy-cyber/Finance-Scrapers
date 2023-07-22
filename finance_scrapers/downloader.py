@@ -52,6 +52,21 @@ class Downloader:
 
         return file_path
     
+    @staticmethod
+    def __transpose_and_fill(df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Transposes the given dataframe and fills its empty spaces with 'N/A'
+
+        Args:
+            df: the dataframe to transpose and fill
+
+        Returns:
+            The updated dataframe
+        """
+        updated_df = df.transpose()
+        updated_df.fillna("", inplace=True)
+        return updated_df
+    
 
     def download_json(self) -> None:
         """
@@ -62,8 +77,8 @@ class Downloader:
         """
         if self.file_path.endswith(".json"):
             df = pd.DataFrame(self.data_dict)
-            df.fillna("N/A", inplace=True)
-            df.to_json(self.file_path)
+            updated_df = Downloader.__transpose_and_fill(df)
+            updated_df.to_json(self.file_path)
         else:
             raise ValueError("File path must end in .json to download json file")
         
@@ -77,7 +92,8 @@ class Downloader:
         """
         if self.file_path.endswith(".md"):
             df = pd.DataFrame(self.data_dict)
-            df.to_markdown(self.file_path)
+            updated_df = Downloader.__transpose_and_fill(df)
+            updated_df.to_markdown(self.file_path)
         else:
             raise ValueError("File path must end in .md to download md file")
         
@@ -91,7 +107,8 @@ class Downloader:
         """
         if self.file_path.endswith(".csv"):
             df = pd.DataFrame(self.data_dict)
-            df.to_csv(self.file_path)
+            updated_df = Downloader.__transpose_and_fill(df)
+            updated_df.to_csv(self.file_path)
         else:
             raise ValueError("File path must end in .csv to download csv file")
         
@@ -105,7 +122,8 @@ class Downloader:
         """
         if self.file_path.endswith(".xlsx"):
             df = pd.DataFrame(self.data_dict)
-            df.to_excel(self.file_path)
+            updated_df = Downloader.__transpose_and_fill(df)
+            updated_df.to_excel(self.file_path)
         else:
             raise ValueError("File path must end in .xlsx to download excel file")
 

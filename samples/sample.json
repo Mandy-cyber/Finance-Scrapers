@@ -1,1 +1,104 @@
-{"AXP":{"PE Ratio (TTM)":"17.92","Open":"172.17","Ask":"171.30 x 800","52 Week Range":"130.65 - 182.15","Market Cap":"126.908B","Forward Dividend & Yield":"2.40 (1.36%)","Avg. Volume":"2,847,747","Earnings Date":"Jul 21, 2023","Day's Range":"167.42 - 173.34","Volume":"Jul 06, 2023","EPS (TTM)":"9.53","Previous Close":"177.11","Bid":"171.13 x 1000","Net Assets":"N\/A","Beta (5Y Monthly)":"N\/A","YTD Daily Total Return":"N\/A","Yield":"N\/A"},"SCHB":{"PE Ratio (TTM)":"21.72","Open":"53.12","Ask":"53.08 x 2200","52 Week Range":"40.92 - 53.43","Market Cap":"N\/A","Forward Dividend & Yield":"N\/A","Avg. Volume":"694,175","Earnings Date":"N\/A","Day's Range":"52.88 - 53.12","Volume":"0.03%","EPS (TTM)":"N\/A","Previous Close":"52.92","Bid":"53.07 x 900","Net Assets":"23B","Beta (5Y Monthly)":"1.01","YTD Daily Total Return":"18.99%","Yield":"1.47%"},"NKE":{"PE Ratio (TTM)":"33.80","Open":"108.00","Ask":"108.95 x 1800","52 Week Range":"82.22 - 131.31","Market Cap":"167.778B","Forward Dividend & Yield":"1.36 (1.26%)","Avg. Volume":"8,096,234","Earnings Date":"Sep 27, 2023 - Oct 02, 2023","Day's Range":"107.54 - 109.29","Volume":"Jun 02, 2023","EPS (TTM)":"3.23","Previous Close":"107.53","Bid":"108.93 x 1200","Net Assets":"N\/A","Beta (5Y Monthly)":"N\/A","YTD Daily Total Return":"N\/A","Yield":"N\/A"}}
+{
+  "Day's Range": {
+    "SCHB": "52.88 - 53.12",
+    "GOOGL": "118.73 - 120.99",
+    "NKE": "107.51 - 109.29",
+    "AXL": "9.14 - 9.41"
+  },
+  "PE Ratio (TTM)": {
+    "SCHB": "52.89",
+    "GOOGL": "1.05",
+    "NKE": "1.12",
+    "AXL": "2.29"
+  },
+  "YTD Daily Total Return": {
+    "SCHB": "18.99%",
+    "GOOGL": "",
+    "NKE": "",
+    "AXL": ""
+  },
+  "Open": {
+    "SCHB": "53.12",
+    "GOOGL": "120.62",
+    "NKE": "108.00",
+    "AXL": "9.31"
+  },
+  "Net Assets": {
+    "SCHB": "23B",
+    "GOOGL": "",
+    "NKE": "",
+    "AXL": ""
+  },
+  "Beta (5Y Monthly)": {
+    "SCHB": "1.01",
+    "GOOGL": "",
+    "NKE": "",
+    "AXL": ""
+  },
+  "Bid": {
+    "SCHB": "52.76 x 1800",
+    "GOOGL": "120.06 x 900",
+    "NKE": "109.06 x 1300",
+    "AXL": "9.15 x 900"
+  },
+  "52 Week Range": {
+    "SCHB": "40.92 - 53.43",
+    "GOOGL": "83.34 - 129.04",
+    "NKE": "82.22 - 131.31",
+    "AXL": "6.61 - 11.96"
+  },
+  "Avg. Volume": {
+    "SCHB": "694,175",
+    "GOOGL": "33,916,937",
+    "NKE": "8,096,234",
+    "AXL": "1,196,275"
+  },
+  "Yield": {
+    "SCHB": "1.47%",
+    "GOOGL": "",
+    "NKE": "",
+    "AXL": ""
+  },
+  "Volume": {
+    "SCHB": "738,364",
+    "GOOGL": "68,300,790",
+    "NKE": "6,617,479",
+    "AXL": "1,448,198"
+  },
+  "Previous Close": {
+    "SCHB": "52.92",
+    "GOOGL": "119.20",
+    "NKE": "107.53",
+    "AXL": "9.18"
+  },
+  "Ask": {
+    "SCHB": "53.88 x 4000",
+    "GOOGL": "120.09 x 800",
+    "NKE": "109.06 x 1100",
+    "AXL": "9.40 x 3100"
+  },
+  "Earnings Date": {
+    "SCHB": "",
+    "GOOGL": "Jul 25, 2023",
+    "NKE": "Sep 27, 2023 - Oct 02, 2023",
+    "AXL": "Aug 04, 2023"
+  },
+  "Market Cap": {
+    "SCHB": "",
+    "GOOGL": "1.526T",
+    "NKE": "167.624B",
+    "AXL": "1.075B"
+  },
+  "Forward Dividend & Yield": {
+    "SCHB": "",
+    "GOOGL": "N/A (N/A)",
+    "NKE": "1.36 (1.26%)",
+    "AXL": "N/A (N/A)"
+  },
+  "EPS (TTM)": {
+    "SCHB": "",
+    "GOOGL": "4.40",
+    "NKE": "3.23",
+    "AXL": "0.49"
+  }
+}
