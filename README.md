@@ -39,7 +39,7 @@ scraper.display_data()
 
 # display custom data
 sample_data = {"name": "Mandy-cyber", "love": "food"}
-scraper.display(sample_data)
+scraper.display_data(sample_data)
 ```
 
 <details>
