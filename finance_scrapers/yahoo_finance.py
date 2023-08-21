@@ -236,7 +236,7 @@ class YahooFinance:
             for info in self.info_to_find:
                 # get information
                 info_val = info.value
-                info_name = self._explicit_wait(By.XPATH, info_val['name_loc'])
+                info_name = self._explicit_wait(By.XPATH, info_val['name_loc']).replace(".", "")
                 info_text = self._explicit_wait(By.XPATH, info_val['info_loc'])
                 # store information
                 stock_info[info_name] = info_text
