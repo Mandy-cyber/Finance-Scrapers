@@ -228,6 +228,11 @@ class YahooFinance:
         stock_info: Dict[str, str] = dict()
 
         if self.__find_stock(ticker):
+            # current stock price
+            curr_price = self._explicit_wait(By.XPATH, """//*[@id="quote-header-info"]/div[3]/div[1]/div/fin-streamer[1]""")
+            stock_info['Current Price'] = curr_price
+
+            # other info
             for info in self.info_to_find:
                 # get information
                 info_val = info.value
@@ -311,4 +316,9 @@ class YahooFinance:
             download_methods[file_type]()
 
 
-# YahooFinance(['schb', 'googl', 'nke', 'axl']).display_data()
+scraper = YahooFinance(['schb', 'googl', 'nke', 'axl'])
+scraper.display_data()
+# scraper.download_data("json", "../samples/sample.json")
+# scraper.download_data("csv", "../samples/sample.csv")
+# scraper.download_data("excel", "../samples/sample.xlsx")
+# scraper.download_data("markdown", "../samples/sample.md")
