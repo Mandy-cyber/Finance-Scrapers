@@ -45,52 +45,54 @@ scraper.display_data(sample_data)
 <details>
     <summary>Example</summary>
 
-
     {
-        "AXP": {
-            "Ask": "171.39 x 800",
-            "PE Ratio (TTM)": "17.95",
-            "Open": "172.17",
-            "Earnings Date": "Jul 21, 2023",
-            "Volume": "Jul 06, 2023",
-            "Market Cap": "127.169B",
-            "Avg. Volume": "186.00",
-            "52 Week Range": "130.65 - 182.15",
-            "Forward Dividend & Yield": "2.40 (1.36%)",
-            "Day's Range": "167.42 - 173.34",
-            "Previous Close": "177.11",
-            "EPS (TTM)": "9.53",
-            "Bid": "171.28 x 1000"
-        },
         "SCHB": {
-            "Ask": "53.07 x 1000",
-            "PE Ratio (TTM)": "21.73",
-            "Open": "53.12",
-            "YTD Daily Total Return": "18.99%",
-            "Volume": "0.03%",
-            "Net Assets": "23B",
-            "Avg. Volume": "2009-11-03",
-            "52 Week Range": "40.92 - 53.43",
+            "Current Price": "51.17",
+            "Previous Close": "50.88",
+            "Avg Volume": "2009-11-03",
+            "PE Ratio (TTM)": "50.87",
+            "Bid": "51.10 x 3200",
+            "52 Week Range": "40.92 - 53.71",
+            "Open": "50.99",
+            "Yield": "1.42%",
+            "Day's Range": "50.74 - 51.18",
+            "YTD Daily Total Return": "14.40%",
             "Beta (5Y Monthly)": "1.01",
-            "Day's Range": "52.88 - 53.12",
-            "Previous Close": "52.92",
-            "Yield": "1.47%",
-            "Bid": "53.06 x 2200"
+            "Volume": "706,955",
+            "Net Assets": "23.86B",
+            "Ask": "51.11 x 1300"
+        },
+        "GOOGL": {
+            "Current Price": "128.69",
+            "Previous Close": "127.46",
+            "Avg Volume": "147.79",
+            "PE Ratio (TTM)": "1.06",
+            "Bid": "128.39 x 1300",
+            "52 Week Range": "83.34 - 133.74",
+            "Open": "127.18",
+            "EPS (TTM)": "4.40",
+            "Day's Range": "126.56 - 128.73",
+            "Earnings Date": "Oct 23, 2023 - Oct 27, 2023",
+            "Forward Dividend & Yield": "N/A (N/A)",
+            "Volume": "14,563,877",
+            "Market Cap": "1.636T",
+            "Ask": "128.37 x 1100"
         },
         "NKE": {
-            "Ask": "108.85 x 1800",
-            "PE Ratio (TTM)": "33.80",
-            "Open": "108.00",
-            "Earnings Date": "Sep 27, 2023 - Oct 02, 2023",
-            "Volume": "Jun 02, 2023",
-            "Market Cap": "167.816B",
-            "Avg. Volume": "127.70",
+            "Current Price": "103.01",
+            "Previous Close": "104.81",
+            "Avg Volume": "116.24",
+            "PE Ratio (TTM)": "1.12",
+            "Bid": "102.84 x 800",
             "52 Week Range": "82.22 - 131.31",
-            "Forward Dividend & Yield": "1.36 (1.26%)",
-            "Day's Range": "107.54 - 109.24",
-            "Previous Close": "107.53",
+            "Open": "105.47",
             "EPS (TTM)": "3.23",
-            "Bid": "108.83 x 1200"
+            "Day's Range": "102.63 - 105.48",
+            "Earnings Date": "Sep 27, 2023 - Oct 02, 2023",
+            "Forward Dividend & Yield": "1.36 (1.29%)",
+            "Volume": "4,524,728",
+            "Market Cap": "158.325B",
+            "Ask": "102.86 x 1000"
         }
     }
 
