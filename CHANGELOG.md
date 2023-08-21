@@ -1,3 +1,20 @@
+## [**v1.1.6**]&emsp;<sub><sup>2023-08-21 ([5945384...6fda67b](https://github.com/qoomon/git-conventional-commits/compare/5945384f40e360a0c010ccefa11a553cc1a292d6...6fda67b67188520f0ac4263f53d2e1839d0133af?diff=split))</sup></sub>
+
+### Features
+
+- added 'Current Price' to stock data ([ab209ed](https://github.com/qoomon/git-conventional-commits/commit/ab209ed760422643fb12b6b2cecd6cf01ea8da82))
+
+### Bug Fixes
+
+- fixed stocks being columns instead of rows ([f5708b9](https://github.com/qoomon/git-conventional-commits/commit/f5708b9ec2e7668e1cbf6669b4001cfd4d7735a5))
+- removing '\.' from field names\. ([8698887](https://github.com/qoomon/git-conventional-commits/commit/86988878bb802f7efefaedb8ee2fd236a2a115bd))
+
+### Merges
+
+- branch 'main' of https://github\.com/Mandy\-cyber/Yahoo\-Finance ([2919019](https://github.com/qoomon/git-conventional-commits/commit/2919019ba2baafd62fe053dd0126ebd394d3fe77))
+
+<br>
+
 ## [**v1.1.5**]&emsp;<sub><sup>2023-07-21 ([70edd04...c9cc404](https://github.com/qoomon/git-conventional-commits/compare/70edd0474bbbbefaece16e6cdc43e12930bffa3c...c9cc4044d647b53f7d12c1ccd6e8b003f51c50c4?diff=split))</sup></sub>
 
 ### Features
