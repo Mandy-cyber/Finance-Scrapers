@@ -1,3 +1,11 @@
+## [**1.1.7**]&emsp;<sub><sup>2023-08-22 ([26d1b61...26d1b61](https://github.com/qoomon/git-conventional-commits/compare/26d1b617a2b1c8f3a5c5dbfa1fa5d94b2354f515...26d1b617a2b1c8f3a5c5dbfa1fa5d94b2354f515?diff=split))</sup></sub>
+
+### Bug Fixes
+
+- fixed imports \+ removed example code ([26d1b61](https://github.com/qoomon/git-conventional-commits/commit/26d1b617a2b1c8f3a5c5dbfa1fa5d94b2354f515))
+
+<br>
+
 ## [**v1.1.6**]&emsp;<sub><sup>2023-08-21 ([5945384...6fda67b](https://github.com/qoomon/git-conventional-commits/compare/5945384f40e360a0c010ccefa11a553cc1a292d6...6fda67b67188520f0ac4263f53d2e1839d0133af?diff=split))</sup></sub>
 
 ### Features
