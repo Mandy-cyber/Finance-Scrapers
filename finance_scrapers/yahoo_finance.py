@@ -9,10 +9,10 @@ from selenium.webdriver.common.by import By
 from typing import Dict, List
 import json
 # internal imports
-# from finance_scrapers.stock_info import StockInfo
-# from finance_scrapers.downloader import Downloader
-from stock_info import StockInfo
-from downloader import Downloader
+from finance_scrapers.stock_info import StockInfo
+from finance_scrapers.downloader import Downloader
+# from stock_info import StockInfo
+# from downloader import Downloader
 
 
 class YahooFinance:
@@ -316,8 +316,8 @@ class YahooFinance:
             download_methods[file_type]()
 
 
-scraper = YahooFinance(['schb', 'googl', 'nke', 'axl'])
-scraper.display_data()
+# scraper = YahooFinance(['schb', 'googl', 'nke', 'axl'])
+# scraper.display_data()
 # scraper.download_data("json", "../samples/sample.json")
 # scraper.download_data("csv", "../samples/sample.csv")
 # scraper.download_data("excel", "../samples/sample.xlsx")
