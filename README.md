@@ -22,7 +22,7 @@ tickers = ['schb', 'googl', 'nflx']
 # run the scraper
 scraper = YahooFinance(tickers)
 scraper.run()
-all_stock_info = scraper.allstock_info
+all_stock_info = scraper.all_stock_info
 ```
 
 <br>
