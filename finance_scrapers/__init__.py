@@ -1,3 +1,2 @@
-from finance_scrapers.stock_info import StockInfo
 from finance_scrapers.downloader import Downloader
 from finance_scrapers.yahoo_finance import YahooFinance
