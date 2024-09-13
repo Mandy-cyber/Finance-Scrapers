@@ -29,7 +29,7 @@ all_stock_info = scraper.all_stock_info
 
 Scrape stock information and __download__ to a file:
 ```python
-from finance_scrapers import YahooFinance
+from finance_scrapers import YahooFinance, Downloader
 
 # the tickers of the stocks you want to scrape
 tickers = ['schb', 'googl', 'nflx']
